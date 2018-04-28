@@ -1,4 +1,4 @@
-package com.test.two.two;
+package com.test.two.two.nio;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -32,6 +32,7 @@ public class EchoClient {
                 }
             });
             ChannelFuture f = b.connect().sync();
+            System.out.println("tttttttt");
             f.addListener(new ChannelFutureListener() {
 
                 public void operationComplete(ChannelFuture future) throws Exception {
@@ -44,9 +45,10 @@ public class EchoClient {
 
                 }
             });
+            System.out.println("ddddddddddddddd");
             f.channel().closeFuture().sync();
         } finally {
-            group.shutdownGracefully().sync();
+            //group.shutdownGracefully().sync();
         }
     }
 

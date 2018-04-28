@@ -1,4 +1,4 @@
-package com.test.two.two;
+package com.test.two.two.nio;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -25,7 +25,9 @@ public class EchoServer {
             });
             ChannelFuture f = b.bind().sync();// 配置完毕，開始绑定server，通过调用sync同步方法堵塞直到绑定成功
             System.out.println(EchoServer.class.getName() + " started and listen on " + f.channel().localAddress());
+
             f.channel().closeFuture().sync();// 应用程序会一直等待，直到channel关闭
+            System.out.println("dddddd");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
