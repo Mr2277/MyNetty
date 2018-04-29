@@ -1,6 +1,5 @@
 package com.test.six.one.lifecycle;
 
-import com.test.two.two.nio.EchoClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -8,7 +7,6 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
@@ -24,19 +22,15 @@ public class EchoClient {
     public void start() throws InterruptedException {
         EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
         Bootstrap bootstrap = new Bootstrap();
-        bootstrap.group(eventLoopGroup);
-        bootstrap.channel(NioSocketChannel.class);
-        bootstrap.remoteAddress(new InetSocketAddress(host,port));
-        bootstrap.handler(new ChannelInitializer<SocketChannel>() {
+        bootstrap.group(eventLoopGroup).channel(NioSocketChannel.class).remoteAddress(new InetSocketAddress(host,port)).handler(new ChannelInitializer<SocketChannel>() {
 
             public void initChannel(SocketChannel ch) throws Exception {
                 ch.pipeline().addLast(new EchoClientHandler());
             }
         });
+        ChannelFuture  channelFuture= bootstrap.connect();
 
-
-       ChannelFuture  channelFuture= bootstrap.connect().sync();
-       channelFuture.addListener(new ChannelFutureListener() {
+        channelFuture.addListener(new ChannelFutureListener() {
            @Override
            public void operationComplete(ChannelFuture channelFuture) throws Exception {
                if(channelFuture.isSuccess()){

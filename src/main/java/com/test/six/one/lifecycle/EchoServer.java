@@ -21,7 +21,7 @@ public class EchoServer {
                   socketChannel.pipeline().addLast(new EchoServerHandler());
             }
         });
-        ChannelFuture channelFuture = bootstrap.bind().sync();
+        ChannelFuture channelFuture = bootstrap.bind();
         channelFuture.addListener(new ChannelFutureListener() {
             @Override
             public void operationComplete(ChannelFuture channelFuture) throws Exception {

@@ -12,8 +12,15 @@ public class EchoClientHandler  extends SimpleChannelInboundHandler<ByteBuf> {
     /**
      *捕捉到异常
      * */
+    /*
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         ctx.close();
+    }
+    */
+
+    @Override
+    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("Client Register");
     }
 }
