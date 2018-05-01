@@ -12,5 +12,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.24.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.marshalling:marshalling-api:1.2.3.GA" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.marshalling:jboss-marshalling:2.0.3.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.jboss.marshalling:jboss-marshalling-river:2.0.3.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.jboss.marshalling:jboss-marshalling-serial:2.0.3.Final" level="project" />
   </component>
 </module>
