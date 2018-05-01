@@ -1,7 +1,5 @@
-package com.test.socket;
+package com.test.socket.javaio;
 
-import java.io.DataInputStream;
-import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;

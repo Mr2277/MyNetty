@@ -1,4 +1,4 @@
-package com.test.socket;
+package com.test.socket.javaio;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
