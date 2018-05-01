@@ -16,7 +16,7 @@ public class SubReqServer {
     public void bind(int port) throws InterruptedException {
         EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
         ServerBootstrap bootstrap=new ServerBootstrap();
-        bootstrap.group(eventLoopGroup).channel(NioServerSocketChannel.class).localAddress(new InetSocketAddress(port)).handler(new ChannelInitializer<SocketChannel>() {
+        bootstrap.group(eventLoopGroup).channel(NioServerSocketChannel.class).localAddress(new InetSocketAddress(port)).childHandler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel socketChannel) throws Exception {
                 socketChannel.pipeline().addLast(new ObjectDecoder(1024*1024, ClassResolvers.weakCachingConcurrentResolver(this.getClass().getClassLoader())));
@@ -25,6 +25,17 @@ public class SubReqServer {
             }
         });
         ChannelFuture channelFuture=bootstrap.bind(port).sync();
+        channelFuture.addListener(new ChannelFutureListener() {
+            @Override
+            public void operationComplete(ChannelFuture channelFuture) throws Exception {
+                 if(channelFuture.isSuccess()){
+                     System.out.println("server s");
+                 }
+                 else{
+                     System.out.println("server f");
+                 }
+            }
+        });
         channelFuture.channel().closeFuture().sync();
         eventLoopGroup.shutdownGracefully();
     }

@@ -2,11 +2,13 @@ package com.test.serializable;
 
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 
-public class SubReqServerHandler extends ChannelHandlerAdapter {
+public class SubReqServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext context,Object msg){
+       System.out.println("Srever channelRead");
         SubscribeReq req=(SubscribeReq)msg;
-        if("Lilinfeng".equalsIgnoreCase(req.getUserName())){
+        if("li".equalsIgnoreCase(req.getUserName())){
             System.out.println("Service accept client subscribe req:["+req.toString()+"]");
             context.writeAndFlush(resp(req.getSubReqID()));
         }

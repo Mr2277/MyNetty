@@ -1,9 +1,11 @@
 package com.test.serializable;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
 
-public class SubReqClientHandler extends ChannelHandlerAdapter {
+public class SubReqClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     public SubReqClientHandler(){
 
     }
@@ -25,6 +27,13 @@ public class SubReqClientHandler extends ChannelHandlerAdapter {
     public void channelRead(ChannelHandlerContext context,Object msg){
         System.out.println("client Accept:"+msg);
     }
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
+        System.out.println("client Accept:"+byteBuf.toString());
+
+    }
+
     public void channelReadComplete(ChannelHandlerContext context){
         context.flush();
     }
