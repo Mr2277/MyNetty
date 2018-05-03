@@ -48,6 +48,21 @@ public class TCPReactor implements Runnable{
             Runnable r = (Runnable) (key.attachment()); // 根據事件之key綁定的對象開新線程
             if (r != null)
                 r.run();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
 }
