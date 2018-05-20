@@ -31,6 +31,7 @@ public class Server {
         eventLoopGroup.shutdownGracefully();
     }
     public static void main(String[] args) throws InterruptedException {
+
         new Server().bind(6666);
     }
 }
